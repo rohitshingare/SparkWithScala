@@ -2,4 +2,4 @@
 
 
 
-# You will get learn about how to work with saprk with spark in depth.
+# You will get learn about how to work with scala with spark in depth.
