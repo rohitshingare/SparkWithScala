@@ -8,6 +8,8 @@ import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types.DateType
 
 object Practice08_Scernario_Base_Problem extends App {
+  
+  
   val sparkConf = new SparkConf()
   sparkConf.set("spark.app.name", "append column")
   sparkConf.set("spark.master", "local[*]")
