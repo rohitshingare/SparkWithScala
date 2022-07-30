@@ -41,7 +41,7 @@ object Practice12_Join_Simple extends App {
   val joinType = "inner" // it can be outer,right,full
   
   val JoinedDf = orderDf.join(customerDf,joinCondition,joinType).sort("order_customer_id")
-
+JoinedDf.show
  spark.stop()
   
   
