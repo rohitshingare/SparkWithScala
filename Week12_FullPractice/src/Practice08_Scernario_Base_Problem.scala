@@ -31,7 +31,8 @@ object Practice08_Scernario_Base_Problem extends App {
    val orderDF  = spark.createDataFrame(mylist).toDF("orderid","orderdate","customerid","status")
    
    val newDf = orderDF.withColumn("orderdate", unix_timestamp(col("orderdate").cast(DateType)))
-   .withColumn("newId", monotonically_increasing_id).dropDuplicates("orderdate", "customerid").drop("orderid")
+   .withColumn("newId", monotonically_increasing_id)
+   .dropDuplicates("orderdate", "customerid").drop("orderid")
    .sort("orderdate")
    
    newDf.printSchema()
