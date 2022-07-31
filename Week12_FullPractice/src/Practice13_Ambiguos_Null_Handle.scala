@@ -49,6 +49,7 @@ JoinedDf.show
  
  //----------------------------------------2-way-----------------------------------------
   
+  
   val orderDf = spark.read
     .format("csv")
     .option("header", true)
@@ -63,7 +64,8 @@ JoinedDf.show
     .option("inferSchema", true)
   .option("path","/Users/DELL/Desktop/BigDataTrendyTech/Week-12/DataSet/customers-201025-223502.csv")
   .load()
-  
+  //we need to use this property to disable to auto Broadcast, which system automatically perform.
+  spark.sql("SET spark.sql.autoBroadcastJoinThreshold = -1")
   
   val joinCondition = orderDf.col("customer_id") === customerDf.col("customer_id")
    
