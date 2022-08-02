@@ -69,7 +69,7 @@ JoinedDf.show
   
   val joinCondition = orderDf.col("customer_id") === customerDf.col("customer_id")
    
-  val joinType = "outer" // it can be outer,right,full
+  val joinType = "inner" // it can be outer,right,full
   
   val JoinedDf =
    orderDf.join(customerDf,joinCondition,joinType)
