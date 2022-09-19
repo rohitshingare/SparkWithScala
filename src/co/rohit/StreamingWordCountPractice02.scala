@@ -7,6 +7,7 @@ import org.apache.spark.streaming.Seconds
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.streaming.Trigger
 
 object StreamingWordCountPractice02 extends App{
    Logger.getLogger("org").setLevel(Level.ERROR)
@@ -15,7 +16,7 @@ object StreamingWordCountPractice02 extends App{
   .master("local[*]")
   .appName("StreamingWordCount")
   .config("spark.sql.shuffle.partitions",3) // just added this line to do not use default 200 partion as data is not that much large
-  .config("spark.streaming.stopGraceFullyOnShutdown","true")
+  .config("spark.streaming.stopGraceFullyOnShutdown","true") // gracefully stop and restart.
   .getOrCreate()
   
   // 1 read from streaming
@@ -37,7 +38,8 @@ object StreamingWordCountPractice02 extends App{
   .writeStream
   .format("console")
   .outputMode("complete")
-  .option("checkpointlocation", "checkpoint-location1")
+  .option("checkpointLocation", "checkpoint-location1")
+  .trigger(Trigger.ProcessingTime("30 seconds")) // it will triggered at every 30 seconds.
   .start()
   
   wordCountQuery.awaitTermination()
