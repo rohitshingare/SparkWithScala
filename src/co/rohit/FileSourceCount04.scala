@@ -29,9 +29,9 @@ object FileSourceCount04 extends App{
   .format("json")
   .option("path","myinputfolder")
   .load
-  
+ 
   OrderDf.printSchema()
-  // 2 process
+  // 2 processs
   
 OrderDf.createOrReplaceTempView("orders")
 

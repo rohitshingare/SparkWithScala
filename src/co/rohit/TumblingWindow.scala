@@ -62,7 +62,7 @@ object TumblingWindow extends App {
      val orderQuery = outputDf.writeStream
      .format("console")
      .outputMode("update")
-     .option("checkpointLocation", "checkpoint-location4")
+     .option("checkpointLocation", "checkpoint-test")
   .trigger(Trigger.ProcessingTime("30 seconds")) // it will triggered at every 30 seconds.
   .start()
   
